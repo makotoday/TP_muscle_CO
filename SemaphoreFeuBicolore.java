@@ -1,12 +1,12 @@
 package simulateur;
 
-public class SemaphoreStop extends Semaphore 
+public class SemaphoreFeuBicolore extends Semaphore 
 {
-	public SemaphoreStop()
+	public SemaphoreFeuBicolore()
 	{
 		super();
 	}
-
+	
 	public void setEtatSemaphore(int e) throws ErreurSemaphore
 	{
 		if(e != -1 || e!=1)
@@ -14,7 +14,7 @@ public class SemaphoreStop extends Semaphore
 		else
 			etatSemaphore=e;
 	}
-    
+	
 	public void changementEtat()
 	{
 		if(etatSemaphore == -1)
@@ -22,5 +22,5 @@ public class SemaphoreStop extends Semaphore
 		else if(etatSemaphore == 1)
 			etatSemaphore = 0;
 	}
-	
+
 }

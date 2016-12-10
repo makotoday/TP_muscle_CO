@@ -2,24 +2,30 @@ package simulateur;
 
 import java.util.ArrayList;
 
-import controles.CapteurPresence;
-import controles.CapteurVitesse;
-
 public class Segment 
 {
+	private int longueurSegment;
 	private Semaphore semaphoreDroit;
 	private Semaphore semaphoreGauche;
 	private ArrayList<CapteurVitesse> listeCapteurVitesse;
 	private ArrayList<CapteurPresence> listeCapteurPresence;
 	private ArrayList<Voiture> listeVoiture;
 	
-	public Segment(Semaphore sd, Semaphore sg)
+	public Segment(int l, Semaphore sd, Semaphore sg) throws ErreurSegment
 	{
+		if(l<=0)
+			throw new ErreurSegment("Longueur Segment invalide");
+		longueurSegment=l;
 		semaphoreDroit=sd;
 		semaphoreGauche=sg;
 		listeCapteurVitesse = new ArrayList<CapteurVitesse>();
 		listeCapteurPresence = new ArrayList<CapteurPresence>();
 		listeVoiture = new ArrayList<Voiture>();
+	}
+	
+	public int getLongueurSegment()
+	{
+		return longueurSegment;
 	}
 	
 	public Semaphore getSemaphoreDroit() {
@@ -64,8 +70,5 @@ public class Segment
 	{
 		this.listeCapteurVitesse.add(cv);
 	}
-	
-	
-	
 
 }
