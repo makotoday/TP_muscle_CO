@@ -1,45 +1,71 @@
-package controles;
+package simulateur;
 
 import java.util.ArrayList;
 
 import controles.CapteurPresence;
 import controles.CapteurVitesse;
 
-public class Segment {
-	
-	private int longueur;// longueur du segement 
+public class Segment 
+{
 	private Semaphore semaphoreDroit;
 	private Semaphore semaphoreGauche;
-	private Jonction JonctionGauche;//le segment est connecté forcément à 2 jonctions. 
-	private Jonction JonctionDroite;
 	private ArrayList<CapteurVitesse> listeCapteurVitesse;
 	private ArrayList<CapteurPresence> listeCapteurPresence;
+	private ArrayList<Voiture> listeVoiture;
 	
-	public Segment(int longueur)
+	public Segment(Semaphore sd, Semaphore sg)
 	{
-		this.longueur = longueur;
+		semaphoreDroit=sd;
+		semaphoreGauche=sg;
+		listeCapteurVitesse = new ArrayList<CapteurVitesse>();
+		listeCapteurPresence = new ArrayList<CapteurPresence>();
+		listeVoiture = new ArrayList<Voiture>();
 	}
 	
 	public Semaphore getSemaphoreDroit() {
 		return semaphoreDroit;
 	}
 
+	public void setSemaphoreDroit(Semaphore semaphoreDroit) {
+		this.semaphoreDroit = semaphoreDroit;
+	}
+
 	public Semaphore getSemaphoreGauche() {
 		return semaphoreGauche;
 	}
 
-	public int getLongueur() {
-		return longueur;
+	public void setSemaphoreGauche(Semaphore semaphoreGauche) {
+		this.semaphoreGauche = semaphoreGauche;
 	}
 
-	public Jonction getJonctionGauche() {
-		return JonctionGauche;
+	public ArrayList<CapteurVitesse> getListeCapteurVitesse() {
+		return listeCapteurVitesse;
 	}
 
-
-	public Jonction getJonctionDroite() {
-		return JonctionDroite;
+	public ArrayList<CapteurPresence> getListeCapteurPresence() {
+		return listeCapteurPresence;
 	}
+
+	public ArrayList<Voiture> getListeVoiture() {
+		return listeVoiture;
+	}
+
+	public void ajouterVoitureSurSegment(Voiture v)
+	{
+		this.listeVoiture.add(v);
+	}
+	
+	public void ajouterCapteurPresenceSurSegment(CapteurPresence cp)
+	{
+		this.listeCapteurPresence.add(cp);
+	}
+	
+	public void ajouterCapteurVitesseSurSegment(CapteurVitesse cv)
+	{
+		this.listeCapteurVitesse.add(cv);
+	}
+	
+	
 	
 
 }
