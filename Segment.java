@@ -7,22 +7,26 @@ public class Segment
 	private int longueurSegment;
 	private Semaphore semaphoreDroit;
 	private Semaphore semaphoreGauche;
+	private Jonction jonctionDroite;
+	private Jonction jonctionGauche;
 	private ArrayList<CapteurVitesse> listeCapteurVitesse;
 	private ArrayList<CapteurPresence> listeCapteurPresence;
 	private ArrayList<Voiture> listeVoiture;
 	
-	public Segment(int l, Semaphore sd, Semaphore sg) throws ErreurSegment
+	public Segment(int l, Semaphore sd, Semaphore sg, Jonction jd, Jonction jg) throws ErreurSegment
 	{
 		if(l<=0)
 			throw new ErreurSegment("Longueur Segment invalide");
 		longueurSegment=l;
 		semaphoreDroit=sd;
 		semaphoreGauche=sg;
+		jonctionDroite=jd;
+		jonctionGauche=jg;
 		listeCapteurVitesse = new ArrayList<CapteurVitesse>();
 		listeCapteurPresence = new ArrayList<CapteurPresence>();
 		listeVoiture = new ArrayList<Voiture>();
 	}
-	
+
 	public int getLongueurSegment()
 	{
 		return longueurSegment;
@@ -44,6 +48,22 @@ public class Segment
 		this.semaphoreGauche = semaphoreGauche;
 	}
 
+	public Jonction getJonctionDroite() {
+		return jonctionDroite;
+	}
+
+	public void setJonctionDroite(Jonction jonctionDroite) {
+		this.jonctionDroite = jonctionDroite;
+	}
+
+	public Jonction getJonctionGauche() {
+		return jonctionGauche;
+	}
+
+	public void setJonctionGauche(Jonction jonctionGauche) {
+		this.jonctionGauche = jonctionGauche;
+	}
+
 	public ArrayList<CapteurVitesse> getListeCapteurVitesse() {
 		return listeCapteurVitesse;
 	}
@@ -59,6 +79,15 @@ public class Segment
 	public void ajouterVoitureSurSegment(Voiture v)
 	{
 		this.listeVoiture.add(v);
+	}
+	
+	public void retirerVoitureSurSegment(Voiture v)
+	{
+		for (Voiture c : listeVoiture)
+		{
+			if(c.getIdVoiture() == v.getIdVoiture())
+				listeVoiture.remove(v);
+		}
 	}
 	
 	public void ajouterCapteurPresenceSurSegment(CapteurPresence cp)

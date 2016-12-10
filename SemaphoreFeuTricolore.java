@@ -24,4 +24,5 @@ public class SemaphoreFeuTricolore extends Semaphore
 		else if(etatSemaphore == 0)
 			etatSemaphore = -1;
 	}
+	
 }
