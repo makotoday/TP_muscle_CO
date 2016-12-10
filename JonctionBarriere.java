@@ -1,13 +1,22 @@
-package controles;
+package simulateur;
 
 public class JonctionBarriere extends Jonction {
 	
 	private Segment segmentFini;
 	
 	public JonctionBarriere()
+	{	}
+	
+	public void setSegmentFini(Segment s)
 	{
-		
+		segmentFini=s;
 	}
+	
+	public Segment getSegmentFini()
+	{
+		return segmentFini;
+	}
+	
 	public void notifie(Voiture v)
 	{
 		System.out.println("la voiture Id"+v.getIdVoiture()+"essaye de traverser une barriere");
