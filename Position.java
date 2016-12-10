@@ -1,4 +1,4 @@
-package controles;
+package simulateur;
 
 public class Position {
 
@@ -18,12 +18,14 @@ public class Position {
 	
 	private SensDep sensDeplacement;// -1 vers la gauche (donc vers 0) 1 vers la droite (vers taillesegment)
 
-	
-	public Position(Segment segact,int dist,SensDep sens)
+	public Position(Segment segact,int dist,SensDep sens) throws ErreurSegment
 	{
-		this.segmentActuel = segact;
-		this.positionActuelle = dist;
-		this.sensDeplacement = sens;
+		if(segact.getLongueurSegment() > dist)
+			throw new ErreurSegment("Erreur : voiture hors segment");
+		else
+			this.segmentActuel = segact;
+			this.positionActuelle = dist;
+			this.sensDeplacement = sens;
 	}
 
 	public Segment getSegmentActuel() {

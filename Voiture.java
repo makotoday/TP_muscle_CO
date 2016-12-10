@@ -1,4 +1,4 @@
-package controles;
+package simulateur;
 
 import controles.Position.SensDep;
 
@@ -91,4 +91,11 @@ public class Voiture
 	public int getIdVoiture() {
 		return idVoiture;
 	}
+
+	public int getVitesseActuelle() {
+		return vitesseActuelle;
+	}
+	
+	
 }
+
