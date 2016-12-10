@@ -1,9 +1,9 @@
-package controles;
+package simulateur;
 
-import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class JonctionCarrefour extends Jonction {
+public abstract class JonctionCarrefour extends Jonction 
+{
 	
 	protected int aleaSaufI(int i)
 	{

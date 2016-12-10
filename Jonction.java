@@ -1,4 +1,4 @@
-package controles;
+package simulateur;
 
 import java.util.ArrayList;
 
@@ -8,18 +8,16 @@ public abstract class Jonction {
 	protected ArrayList<Voiture> voitureAttente;
 	
 	Jonction()
-	{
+	{	}
 
-	}
-	
-	/*selon le type de jonctions, va replacer les voitures sur des segments aleatoire avec des position
+	/*selon le type de jonctions, va replacer les voitures sur des segments aleatoires avec des positions
 	 * correspondant au nombre d'unité de déplacement restant
 	 */
 	public abstract void placerVoitures(int nbDeplacement);
 	
-	public void addVoitureAttente(Voiture v){
+	public void addVoitureAttente(Voiture v)
+	{
 		voitureAttente.add(v);
 	}
 
-	
 }
