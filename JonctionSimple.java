@@ -20,7 +20,7 @@ public class JonctionSimple extends Jonction {
 			{
 				v.getPositionVoiture().setSegmentActuel(segmentGauche);
 				//ce qui reste à parcourir pendant l'unité de temps à la voiture sur le nouveau segment :
-				v.getPositionVoiture().setPositionActuelle(segmentGauche.getLongueur()-nbDeplacement);
+				v.getPositionVoiture().setPositionActuelle(segmentGauche.getLongueurSegment()-nbDeplacement);
 			}else if(segmentVoiture==segmentGauche)
 			{
 				v.getPositionVoiture().setSegmentActuel(segmentDroit);
@@ -30,6 +30,19 @@ public class JonctionSimple extends Jonction {
 				return;
 			}
 		}
+		
+	}
+
+	@Override
+	public void addSegment(Segment seg) {
+		if(this.indiceSegment==2)
+		{
+			System.out.println("erreur initialisation segment");
+			return;
+		}
+		if(this.indiceSegment==0) this.segmentGauche = seg;
+		else this.segmentDroit = seg; 
+		this.indiceSegment++;
 		
 	}
 

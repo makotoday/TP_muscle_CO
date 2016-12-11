@@ -3,7 +3,7 @@ package controles;
 public class Position {
 
 	private Segment segmentActuel;
-	private int positionActuelle;// equivalent a la distance par rapport a l'extremite droite du segment
+	private int positionActuelle;// equivalent a la distance par rapport a l'extremite gauche du segment
 	
 	public enum SensDep
 	{

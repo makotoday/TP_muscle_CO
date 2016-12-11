@@ -6,10 +6,12 @@ public abstract class Jonction {
 	
 	protected int longueurJonction = 1;
 	protected ArrayList<Voiture> voitureAttente;
+	protected ArrayList<Semaphore> listeSemaphore;
+	protected int indiceSegment = 0; //aide à initialiser les segments
 	
 	Jonction()
 	{
-
+		
 	}
 	
 	/*selon le type de jonctions, va replacer les voitures sur des segments aleatoire avec des position
@@ -20,6 +22,7 @@ public abstract class Jonction {
 	public void addVoitureAttente(Voiture v){
 		voitureAttente.add(v);
 	}
-
+	
+	public abstract void addSegment(Segment seg);
 	
 }

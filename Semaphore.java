@@ -10,12 +10,8 @@ public abstract class Semaphore
 		etatSemaphore = -1;
 	}
 	
-	void adaptationVoiture(Voiture v)//adaptation de la vitesse pour les feux
+	void adaptationVoiture(Voiture v)
 	{
-		if (etatSemaphore==-1)
-		{
-			v.setVitesseActuelle(0);
-		}
 		
 		if (etatSemaphore==0)
 		{
@@ -28,6 +24,11 @@ public abstract class Semaphore
 		return etatSemaphore;
 	}
 
+	public void setSegment(Segment seg)
+	{
+		this.sonSegment = seg;
+	}
+	
 	public abstract void setEtatSemaphore(int e) throws ErreurSemaphore;
 	
 	public abstract void changementEtat();

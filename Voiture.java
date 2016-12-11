@@ -38,36 +38,29 @@ public class Voiture
 		}
 
 		sem.adaptationVoiture(this);//actualise la vitesse de la voiture en fonction de l'état de la sémaphore
-		if(sem.getEtatSemaphore()<0)//la voiture sur le segment s'arrete
-		{
-			return;
-		}
-		else 
-		{
+		int nbdeplacrest = this.vitesseActuelle;//nombre de déplacement restant
 			if(sonSens == SensDep.Gauche )
 			{
-				if(this.vitesseActuelle<=this.positionVoiture.getPositionActuelle())
+				if(this.vitesseActuelle>this.positionVoiture.getPositionActuelle())
 				{
 					this.positionVoiture.setPositionActuelle(positionVoiture.getPositionActuelle()-vitesseActuelle);
-				}else{
-					int nbdeplacrest = this.vitesseActuelle;//nombre de déplacement restant
-					nbdeplacrest = nbdeplacrest -this.positionVoiture.getPositionActuelle() -1;
+					
+				}else if(sem.getEtatSemaphore()!=-1){
+					nbdeplacrest = nbdeplacrest - this.positionVoiture.getPositionActuelle()-1;
 					sonSegment.getJonctionGauche().addVoitureAttente(this);//la voiture passe la jonction
 					if(nbdeplacrest>0)sonSegment.getJonctionGauche().placerVoitures(nbdeplacrest);//la voiture essaye de passer la jonction
 				}
 			}else if(sonSens == SensDep.Droite)
 			{
-				if(this.vitesseActuelle>sonSegment.getLongueurSegment()-this.positionVoiture.getPositionActuelle())
+				if(this.vitesseActuelle<sonSegment.getLongueurSegment()-this.positionVoiture.getPositionActuelle())
 				{
-					this.positionVoiture.setPositionActuelle(positionVoiture.getPositionActuelle()-vitesseActuelle);
-				}else{
-					int nbdeplacrest = this.vitesseActuelle;//nombre de déplacement restant
-					nbdeplacrest = nbdeplacrest -this.positionVoiture.getPositionActuelle() -1;
-					sonSegment.getJonctionGauche().addVoitureAttente(this);
-					if(nbdeplacrest>0)sonSegment.getJonctionGauche().placerVoitures(nbdeplacrest);	
+					this.positionVoiture.setPositionActuelle(positionVoiture.getPositionActuelle()+vitesseActuelle);
+				}else if(sem.getEtatSemaphore()!=-1){
+						nbdeplacrest = nbdeplacrest -this.positionVoiture.getPositionActuelle() -1;
+						sonSegment.getJonctionGauche().addVoitureAttente(this);
+						if(nbdeplacrest>0)sonSegment.getJonctionGauche().placerVoitures(nbdeplacrest);	
 					}
 			}
-		}
 	}
 	
 	public Position getPositionVoiture() {

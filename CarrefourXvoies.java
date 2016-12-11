@@ -24,7 +24,7 @@ public class CarrefourXvoies extends JonctionCarrefour {
 					{
 						v.getPositionVoiture().setPositionActuelle(nbDeplacement);
 					}else{
-						v.getPositionVoiture().setPositionActuelle(this.listeSegmentCarrefour.get(i).getLongueur()-nbDeplacement);
+						v.getPositionVoiture().setPositionActuelle(this.listeSegmentCarrefour.get(i).getLongueurSegment()-nbDeplacement);
 					}
 					break;
 				}

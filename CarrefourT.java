@@ -13,7 +13,6 @@ public class CarrefourT extends JonctionCarrefour {
 	public CarrefourT()
 	{
 		segmentsT = new Segment[3];
-		
 	}
 	
 	
@@ -35,7 +34,7 @@ public class CarrefourT extends JonctionCarrefour {
 					{
 						v.getPositionVoiture().setPositionActuelle(nbDeplacement);
 					}else{
-						v.getPositionVoiture().setPositionActuelle(segmentsT[i].getLongueur()-nbDeplacement);
+						v.getPositionVoiture().setPositionActuelle(segmentsT[i].getLongueurSegment()-nbDeplacement);
 					}
 					break;
 				}
@@ -46,5 +45,19 @@ public class CarrefourT extends JonctionCarrefour {
 			}
 		}			
 	}
+
+
+	@Override
+	public void addSegment(Segment seg) 
+	{
+		if(this.indiceSegment==3) 
+		{
+			System.out.println("erreur initialisation segment");
+			return;
+		}
+		this.segmentsT[this.indiceSegment] = seg;
+		indiceSegment++;
+	}
+	
 
 }
