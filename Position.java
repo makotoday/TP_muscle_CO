@@ -1,9 +1,9 @@
-package simulateur;
+package controles;
 
 public class Position {
 
 	private Segment segmentActuel;
-	private int positionActuelle;// equivalent a la distance par rapport a l'extremite droite du segment
+	private int positionActuelle;// equivalent a la distance par rapport a l'extremite gauche du segment
 	
 	public enum SensDep
 	{
@@ -18,14 +18,12 @@ public class Position {
 	
 	private SensDep sensDeplacement;// -1 vers la gauche (donc vers 0) 1 vers la droite (vers taillesegment)
 
-	public Position(Segment segact,int dist,SensDep sens) throws ErreurSegment
+	
+	public Position(Segment segact,int dist,SensDep sens)
 	{
-		if(segact.getLongueurSegment() > dist)
-			throw new ErreurSegment("Erreur : voiture hors segment");
-		else
-			this.segmentActuel = segact;
-			this.positionActuelle = dist;
-			this.sensDeplacement = sens;
+		this.segmentActuel = segact;
+		this.positionActuelle = dist;
+		this.sensDeplacement = sens;
 	}
 
 	public Segment getSegmentActuel() {

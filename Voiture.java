@@ -1,4 +1,4 @@
-package simulateur;
+package controles;
 
 import controles.Position.SensDep;
 
@@ -36,48 +36,31 @@ public class Voiture
 			sem = sonSegment.getSemaphoreDroit();
 			saJonction = sonSegment.getJonctionDroite();
 		}
-	//	if(saJonction==null) 
-		boolean peutcirculer = false;//fonctions semaphores a faire
-		if(this.vitesseActuelle==0)
-		{
-			this.vitesseActuelle = this.vitesseMaxVoiture;
-			return;
-		}
-		if(!peutcirculer)//la voiture ne change pas de segment, s'arrete avant la jonction
-		{
+
+		sem.adaptationVoiture(this);//actualise la vitesse de la voiture en fonction de l'état de la sémaphore
+		int nbdeplacrest = this.vitesseActuelle;//nombre de déplacement restant
 			if(sonSens == SensDep.Gauche )
 			{
-				if(this.vitesseActuelle<=this.positionVoiture.getPositionActuelle())
+				if(this.vitesseActuelle>this.positionVoiture.getPositionActuelle())
 				{
 					this.positionVoiture.setPositionActuelle(positionVoiture.getPositionActuelle()-vitesseActuelle);
-				}else this.positionVoiture.setPositionActuelle(0);//la voiture s'arrete au niveau du semaphore
-			}
-			else //vers la droite
-			{
-				if(this.vitesseActuelle+this.positionVoiture.getPositionActuelle()<=sonSegment.getLongueur())
-				{
-					this.positionVoiture.setPositionActuelle(positionVoiture.getPositionActuelle()+vitesseActuelle);
-				}else this.positionVoiture.setPositionActuelle(sonSegment.getLongueur());
-			}
-		}
-		else // changement de segment aleatoire avec les segments de la jonction
-		{
-			int nbdeplacrest = this.vitesseActuelle;//nombre de déplacement restant
-			if(sonSens == SensDep.Gauche )
-			{
-				if(this.vitesseActuelle<=this.positionVoiture.getPositionActuelle())
-				{
-					this.positionVoiture.setPositionActuelle(positionVoiture.getPositionActuelle()-vitesseActuelle);
-				}else{
-					nbdeplacrest = nbdeplacrest -this.positionVoiture.getPositionActuelle() -1;
+					
+				}else if(sem.getEtatSemaphore()!=-1){
+					nbdeplacrest = nbdeplacrest - this.positionVoiture.getPositionActuelle()-1;
 					sonSegment.getJonctionGauche().addVoitureAttente(this);//la voiture passe la jonction
 					if(nbdeplacrest>0)sonSegment.getJonctionGauche().placerVoitures(nbdeplacrest);//la voiture essaye de passer la jonction
 				}
-			}else //vers la droite
+			}else if(sonSens == SensDep.Droite)
 			{
-				
+				if(this.vitesseActuelle<sonSegment.getLongueurSegment()-this.positionVoiture.getPositionActuelle())
+				{
+					this.positionVoiture.setPositionActuelle(positionVoiture.getPositionActuelle()+vitesseActuelle);
+				}else if(sem.getEtatSemaphore()!=-1){
+						nbdeplacrest = nbdeplacrest -this.positionVoiture.getPositionActuelle() -1;
+						sonSegment.getJonctionGauche().addVoitureAttente(this);
+						if(nbdeplacrest>0)sonSegment.getJonctionGauche().placerVoitures(nbdeplacrest);	
+					}
 			}
-		}
 	}
 	
 	public Position getPositionVoiture() {
@@ -93,9 +76,10 @@ public class Voiture
 	}
 
 	public int getVitesseActuelle() {
-		return vitesseActuelle;
+		return this.vitesseActuelle;
 	}
-	
-	
-}
 
+	public int getVitesseMaxVoiture() {
+		return vitesseMaxVoiture;
+	}
+}

@@ -1,9 +1,27 @@
-package simulateur;
+package controles;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class JonctionCarrefour extends Jonction 
-{
+public abstract class JonctionCarrefour extends Jonction {
+	
+protected ArrayList<Segment> listeSegmentCarrefour; 
+	
+	
+	JonctionCarrefour(){
+		super(); 
+		listeSegmentCarrefour=new ArrayList<Segment>(); 
+	}
+
+	public boolean AddSegment(Segment segment){
+		
+		listeSegmentCarrefour.add(segment); 
+		return true; 
+	}
+	
+	public Segment getSegment(int index){
+		return listeSegmentCarrefour.get(index); 
+	}
 	
 	protected int aleaSaufI(int i)
 	{

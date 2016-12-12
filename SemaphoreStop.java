@@ -1,4 +1,6 @@
-package simulateur;
+package controles;
+
+import controles.Position.SensDep;
 
 public class SemaphoreStop extends Semaphore 
 {
@@ -15,12 +17,23 @@ public class SemaphoreStop extends Semaphore
 			etatSemaphore=e;
 	}
     
+	@Override void adaptationVoiture(Voiture v)
+	{
+		Position pos = v.getPositionVoiture(); 
+		//Pour un stop, si la voiture est au bout du segment, elle peut repartir si elle était à l'arret sinon elle s'arrete
+		if (v.getVitesseActuelle()==0&&((pos.getSensDeplacement()==SensDep.Gauche&&pos.getPositionActuelle()==0)
+		||(pos.getSensDeplacement()==SensDep.Droite&&pos.getPositionActuelle()==pos.getSegmentActuel().getLongueurSegment())))
+		{
+				v.setVitesseActuelle(v.getVitesseMaxVoiture());
+				this.etatSemaphore = 1;
+
+		}else this.etatSemaphore = -1;
+		
+	}
+	
 	public void changementEtat()
 	{
-		if(etatSemaphore == -1)
-			etatSemaphore = 1;
-		else if(etatSemaphore == 1)
-			etatSemaphore = 0;
+		
 	}
 	
 }

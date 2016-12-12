@@ -1,4 +1,4 @@
-package simulateur;
+package controles;
 
 import java.util.ArrayList;
 
@@ -6,18 +6,38 @@ public abstract class Jonction {
 	
 	protected int longueurJonction = 1;
 	protected ArrayList<Voiture> voitureAttente;
+	protected ArrayList<Semaphore> listeSemaphore;
+	protected int indiceSegment = 0; //aide ï¿½ initialiser les segments
 	
 	Jonction()
-	{	}
-
-	/*selon le type de jonctions, va replacer les voitures sur des segments aleatoires avec des positions
-	 * correspondant au nombre d'unité de déplacement restant
+	{
+		voitureAttente=new ArrayList<Voiture>();
+		listeSemaphore=new ArrayList<Semaphore>(); 
+	}
+	
+	/*selon le type de jonctions, va replacer les voitures sur des segments aleatoire avec des position
+	 * correspondant au nombre d'unitï¿½ de dï¿½placement restant
 	 */
 	public abstract void placerVoitures(int nbDeplacement);
 	
-	public void addVoitureAttente(Voiture v)
-	{
+	public void addVoitureAttente(Voiture v){
 		voitureAttente.add(v);
 	}
-
+	
+	//public abstract void addSegment(Segment seg);
+	/**
+	 * Methode permettant de  supprimer une voiture de la liste  de 
+	 * voiture 
+	 * @param index
+	 */
+	public void RemoveVoitureAttent(int index){
+		voitureAttente.remove(index); 
+	}
+	
+	public Voiture getVoitureAttente(int index){
+		return voitureAttente.get(index); 
+	}
+	
+	
+	
 }
