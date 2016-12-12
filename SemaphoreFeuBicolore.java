@@ -1,4 +1,4 @@
-package controles;
+package simulateur;
 
 public class SemaphoreFeuBicolore extends Semaphore 
 {
@@ -20,7 +20,7 @@ public class SemaphoreFeuBicolore extends Semaphore
 		if(etatSemaphore == -1)
 			etatSemaphore = 1;
 		else if(etatSemaphore == 1)
-			etatSemaphore = -1;
+			etatSemaphore = 0;
 	}
 
 }

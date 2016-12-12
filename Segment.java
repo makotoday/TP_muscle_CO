@@ -1,4 +1,4 @@
-package controles;
+package simulateur;
 
 import java.util.ArrayList;
 
@@ -16,12 +16,10 @@ public class Segment
 	public Segment(int l, Semaphore sd, Semaphore sg, Jonction jd, Jonction jg) throws ErreurSegment
 	{
 		if(l<=0)
-		throw new ErreurSegment("Longueur Segment invalide");
+			throw new ErreurSegment("Longueur Segment invalide");
 		longueurSegment=l;
 		semaphoreDroit=sd;
 		semaphoreGauche=sg;
-		semaphoreDroit.setSegment(this);
-		semaphoreGauche.setSegment(this);
 		jonctionDroite=jd;
 		jonctionGauche=jg;
 		listeCapteurVitesse = new ArrayList<CapteurVitesse>();
