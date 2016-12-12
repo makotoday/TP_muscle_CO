@@ -6,11 +6,13 @@ public abstract class ElementRegulation {
 	
 
 	protected ArrayList<JonctionCarrefour> listCarrefour; 
+	protected ArrayList<Segment> listSegment; 
 	
 	public ElementRegulation(){
 		
 		
 		listCarrefour=new ArrayList<JonctionCarrefour>(); 
+		listSegment= new ArrayList<Segment>(); 
 	}
 	
 	public ArrayList<JonctionCarrefour> getListCarrefour(){
@@ -31,6 +33,8 @@ public abstract class ElementRegulation {
 		 listCarrefour.add(carrefour); 
 	 }
 	 
-	
+	public void getListSegment(ArrayList<Segment> seg){
+		listSegment=seg; 
+	}
 	 
 }

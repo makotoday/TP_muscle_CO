@@ -25,21 +25,13 @@ public class ReguleVitesse extends ElementRegulation {
 	
 	public void Regule(){
 		
-		int tailej=listCarrefour.size(); 
-		for(int i=0; i<tailej;i++){
-			AppliqueLimite(i); 
+	 
+		for(Segment seg : listSegment){
+			ModifieSemaphore(seg); 
 		}
 	}
 	
-	private void AppliqueLimite(int index){
-		
-		JonctionCarrefour tmp=listCarrefour.get(index); 
-		int taille=tmp.listeSegmentCarrefour.size();
-		for(int i=0; i<taille;i++){
-			ModifieSemaphore(tmp.getSegment(i)); 
-		}
-		
-	}
+	
 
 
 
