@@ -10,7 +10,7 @@ public class ReguleVitesse extends ElementRegulation {
 
 	private int limite; 
 	/**
-	 *Constructeur, construisant l'obje et mettant la limite à 30 
+	 *Constructeur, construisant l'objet et mettant la limite à 30 
 	 */
 	public ReguleVitesse(){
 		super();
@@ -25,13 +25,21 @@ public class ReguleVitesse extends ElementRegulation {
 	
 	public void Regule(){
 		
-	 
-		for(Segment seg : listSegment){
-			ModifieSemaphore(seg); 
+		int tailej=listCarrefour.size(); 
+		for(int i=0; i<tailej;i++){
+			AppliqueLimite(i); 
 		}
 	}
 	
-	
+	private void AppliqueLimite(int index){
+		
+		JonctionCarrefour tmp=listCarrefour.get(index); 
+		int taille=tmp.listeSegmentCarrefour.size();
+		for(int i=0; i<taille;i++){
+			ModifieSemaphore(tmp.getSegment(i)); 
+		}
+		
+	}
 
 
 

@@ -27,8 +27,7 @@ public class SemaphoreStop extends Semaphore
 				v.setVitesseActuelle(v.getVitesseMaxVoiture());
 				this.etatSemaphore = 1;
 
-		}else this.etatSemaphore = -1;
-		
+		}else this.etatSemaphore = -1;	
 	}
 	
 	public void changementEtat()

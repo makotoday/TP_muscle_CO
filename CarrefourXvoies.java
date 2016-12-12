@@ -36,4 +36,11 @@ public class CarrefourXvoies extends JonctionCarrefour {
 		}	
 	}
 
+	@Override
+	public void addSegment(Segment seg) {
+		this.listeSegmentCarrefour.add(seg);
+		this.indiceSegment++;
+		
+	}
+
 }

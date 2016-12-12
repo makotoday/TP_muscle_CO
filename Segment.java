@@ -13,17 +13,26 @@ public class Segment
 	private ArrayList<CapteurPresence> listeCapteurPresence;
 	private ArrayList<Voiture> listeVoiture;
 	
-	public Segment(int l, Semaphore sd, Semaphore sg, Jonction jd, Jonction jg) throws ErreurSegment
+	public Segment(int l, Semaphore sg, Semaphore sd, Jonction jg, Jonction jd) throws ErreurSegment
 	{
-		if(l<=0)
-		throw new ErreurSegment("Longueur Segment invalide");
+		if(l<=0)throw new ErreurSegment("Longueur Segment invalide");
 		longueurSegment=l;
-		semaphoreDroit=sd;
-		semaphoreGauche=sg;
-		semaphoreDroit.setSegment(this);
-		semaphoreGauche.setSegment(this);
 		jonctionDroite=jd;
 		jonctionGauche=jg;
+		jonctionDroite.addSegment(this);
+		jonctionGauche.addSegment(this);
+		if(sd!=null)
+		{
+			semaphoreDroit=sd;
+			semaphoreDroit.setSegment(this);
+			jonctionDroite.addSemaphore(semaphoreDroit);
+		}
+		if(sg!=null)
+		{
+			semaphoreGauche=sg;
+			semaphoreGauche.setSegment(this);
+			jonctionGauche.addSemaphore(semaphoreGauche);
+		}
 		listeCapteurVitesse = new ArrayList<CapteurVitesse>();
 		listeCapteurPresence = new ArrayList<CapteurPresence>();
 		listeVoiture = new ArrayList<Voiture>();

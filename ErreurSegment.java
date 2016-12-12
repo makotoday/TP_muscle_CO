@@ -1,4 +1,4 @@
-package simulateur;
+package controles;
 
 public class ErreurSegment extends Exception {
 	public ErreurSegment() {

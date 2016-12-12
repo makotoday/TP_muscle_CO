@@ -7,16 +7,15 @@ public abstract class Jonction {
 	protected int longueurJonction = 1;
 	protected ArrayList<Voiture> voitureAttente;
 	protected ArrayList<Semaphore> listeSemaphore;
-	protected int indiceSegment = 0; //aide ï¿½ initialiser les segments
+	protected int indiceSegment = 0; //aide à initialiser les segments
 	
 	Jonction()
 	{
-		voitureAttente=new ArrayList<Voiture>();
-		listeSemaphore=new ArrayList<Semaphore>(); 
+		
 	}
 	
 	/*selon le type de jonctions, va replacer les voitures sur des segments aleatoire avec des position
-	 * correspondant au nombre d'unitï¿½ de dï¿½placement restant
+	 * correspondant au nombre d'unité de déplacement restant
 	 */
 	public abstract void placerVoitures(int nbDeplacement);
 	
@@ -24,20 +23,11 @@ public abstract class Jonction {
 		voitureAttente.add(v);
 	}
 	
-	//public abstract void addSegment(Segment seg);
-	/**
-	 * Methode permettant de  supprimer une voiture de la liste  de 
-	 * voiture 
-	 * @param index
-	 */
-	public void RemoveVoitureAttent(int index){
-		voitureAttente.remove(index); 
+	public abstract void addSegment(Segment seg);
+	
+	public void addSemaphore(Semaphore sem)
+	{
+		listeSemaphore.add(sem);
 	}
-	
-	public Voiture getVoitureAttente(int index){
-		return voitureAttente.get(index); 
-	}
-	
-	
 	
 }

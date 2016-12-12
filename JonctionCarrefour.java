@@ -5,22 +5,11 @@ import java.util.Random;
 
 public abstract class JonctionCarrefour extends Jonction {
 	
-protected ArrayList<Segment> listeSegmentCarrefour; 
+	protected ArrayList<Segment> listeSegmentCarrefour;
 	
-	
-	JonctionCarrefour(){
-		super(); 
-		listeSegmentCarrefour=new ArrayList<Segment>(); 
-	}
-
-	public boolean AddSegment(Segment segment){
-		
-		listeSegmentCarrefour.add(segment); 
-		return true; 
-	}
-	
-	public Segment getSegment(int index){
-		return listeSegmentCarrefour.get(index); 
+	public JonctionCarrefour()
+	{
+		listeSegmentCarrefour = new ArrayList<Segment>();
 	}
 	
 	protected int aleaSaufI(int i)
@@ -31,6 +20,12 @@ protected ArrayList<Segment> listeSegmentCarrefour;
 		numsegment = rand.nextInt(3);//renvoie un nombre aleatoire dans [0, 2]
 		}while(i==numsegment);
 		return numsegment;
+	}
+	
+	public abstract void addSegment(Segment seg);
+
+	public Segment getSegment(int i) {
+		return this.listeSegmentCarrefour.get(i);
 	}
 
 }

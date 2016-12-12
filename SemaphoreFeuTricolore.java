@@ -1,4 +1,4 @@
-package simulateur;
+package controles;
 
 public class SemaphoreFeuTricolore extends Semaphore 
 {

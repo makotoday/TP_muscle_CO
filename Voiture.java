@@ -15,7 +15,7 @@ public class Voiture
 	{
 		this.idVoiture = id;
 		this.longueurVoiture = 1;
-		this.vitesseActuelle = 0;//la voiture est intialement a l'arret
+		this.vitesseActuelle = 0;//initialement à l'arret
 		this.vitesseMaxVoiture = vmax;
 		
 	}

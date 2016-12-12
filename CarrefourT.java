@@ -3,18 +3,7 @@ package controles;
 import java.util.Random;
 
 public class CarrefourT extends JonctionCarrefour {
-	
-	private Segment[] segmentsT;
-	/* segmentsT :
-	 * indice 0 pour segment gauche
-	 * indice 1 pour segment droit
-	 * indice 2 pour segment milieu
-	 */
-	public CarrefourT()
-	{
-		segmentsT = new Segment[3];
-	}
-	
+
 	
 	@Override
 	public void placerVoitures(int nbDeplacement) {
@@ -25,16 +14,16 @@ public class CarrefourT extends JonctionCarrefour {
 			int i;
 			for( i=0;i<3;i++)
 			{
-				if(segmentsT[i]==segActuel)
+				if(listeSegmentCarrefour.get(i)==segActuel)
 				{
 					int alea = aleaSaufI(i);
 					//On cherche dans quel sens le segment connecte la jonction
-					v.getPositionVoiture().setSegmentActuel(segmentsT[alea]);
-					if(segmentsT[alea].getJonctionGauche()==this)
+					v.getPositionVoiture().setSegmentActuel(listeSegmentCarrefour.get(alea));
+					if(listeSegmentCarrefour.get(alea).getJonctionGauche()==this)
 					{
 						v.getPositionVoiture().setPositionActuelle(nbDeplacement);
 					}else{
-						v.getPositionVoiture().setPositionActuelle(segmentsT[i].getLongueurSegment()-nbDeplacement);
+						v.getPositionVoiture().setPositionActuelle(listeSegmentCarrefour.get(i).getLongueurSegment()-nbDeplacement);
 					}
 					break;
 				}
@@ -50,14 +39,14 @@ public class CarrefourT extends JonctionCarrefour {
 	@Override
 	public void addSegment(Segment seg) 
 	{
-		if(this.indiceSegment==3) 
+		if(this.listeSegmentCarrefour.size()==3) 
 		{
 			System.out.println("erreur initialisation segment");
 			return;
 		}
-		this.segmentsT[this.indiceSegment] = seg;
+		this.listeSegmentCarrefour.add(seg);
 		indiceSegment++;
 	}
 	
-
+	
 }
