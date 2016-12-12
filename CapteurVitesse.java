@@ -28,7 +28,7 @@ public class CapteurVitesse implements Capteur {
 		tempscourant=0; 
 		vitesse_v=new ArrayList<CalculatorV>(); 
 	}
-	
+	public SensDep getCoteCapteur(){return sens; }
 	public void setCoteCapteur(SensDep senscapt) {sens=senscapt; }
 	public void setLongeurSegment(int long_segt) {long_segment=long_segt; }
 	public int  getTemps() {return tempscourant; }
@@ -138,6 +138,11 @@ public class CapteurVitesse implements Capteur {
 	}
 
 	public double CalculVitesse(int index){ return vitesse_v.get(index).VitesseVoiture(position);}
+	
+	public double CalculVitesse_id(int id){
+		return getCalculator(id).VitesseVoiture(position); 
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
