@@ -21,7 +21,7 @@ public class JonctionBarriere extends Jonction {
 			this.voitureAttente.remove(v);
 		}
 	}
-	@Override
+	//@Override
 	public void addSegment(Segment seg) {
 		if(indiceSegment==1) return;
 		segmentFini = seg;
